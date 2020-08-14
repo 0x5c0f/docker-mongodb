@@ -1,0 +1,65 @@
+version: '2'
+services:
+  # MongoDB: https://hub.docker.com/_/mongo/
+  mongo01:
+    image: mongo:3
+    hostname: mongo01
+    container_name: mongd01
+    volumes:
+      - mongo01:/data/db
+      - /data/docker/mongodb/.keyfile:/data/keyfile:ro
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: <passwd>
+    command: mongod --auth --keyFile /data/keyfile/mongodb-keyfile --bind_ip_all --replSet rs0
+    ports:
+      - "27017:27017"
+    networks: 
+      - mongodb
+
+  mongo02:
+    image: mongo:3
+    hostname: mongo02
+    container_name: mongd02
+    volumes:
+      - mongo02:/data/db
+      - /data/docker/mongodb/.keyfile:/data/keyfile:ro
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: <passwd>
+    command: mongod --auth --keyFile /data/keyfile/mongodb-keyfile --bind_ip_all --replSet rs0
+    ports:
+      - "27027:27017"
+    networks: 
+      - mongodb
+
+  mongo03:
+    image: mongo:3
+    hostname: mongo03
+    container_name: mongd03
+    volumes:
+      - mongo03:/data/db
+      - /data/docker/mongodb/.keyfile:/data/keyfile:ro
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: <passwd>
+    command: mongod --auth --keyFile /data/keyfile/mongodb-keyfile --bind_ip_all --replSet rs0
+    ports:
+      - "27037:27017"
+    networks: 
+      - mongodb
+
+volumes:
+  mongo01:
+    driver: local
+  mongo02:
+    driver: local
+  mongo03:
+    driver: local
+
+networks:
+  mongodb:
+    driver: bridge
