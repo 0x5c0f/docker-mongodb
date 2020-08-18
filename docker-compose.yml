@@ -12,7 +12,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: <passwd>
-    command: mongod --auth --keyFile /data/keyfile/mongodb-keyfile --bind_ip_all --replSet rs0
+    command: mongod --auth --keyFile /data/keyfile/mongodb-keyfile --bind_ip_all --wiredTigerCacheSizeGB 1.5 --replSet rs0
     ports:
       - "27017:27017"
     networks: 
@@ -29,7 +29,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: <passwd>
-    command: mongod --auth --keyFile /data/keyfile/mongodb-keyfile --bind_ip_all --replSet rs0
+    command: mongod --auth --keyFile /data/keyfile/mongodb-keyfile --bind_ip_all --wiredTigerCacheSizeGB 1.5 --replSet rs0
     ports:
       - "27027:27017"
     networks: 
@@ -46,7 +46,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: <passwd>
-    command: mongod --auth --keyFile /data/keyfile/mongodb-keyfile --bind_ip_all --replSet rs0
+    command: mongod --auth --keyFile /data/keyfile/mongodb-keyfile --bind_ip_all --wiredTigerCacheSizeGB 1.5 --replSet rs0
     ports:
       - "27037:27017"
     networks: 
